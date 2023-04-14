@@ -5,6 +5,10 @@ function App() {
     <div className="App">
       <MovieList />
       <h1>ABC</h1>
+      <h1>ABC</h1>
+      <h1>ABC</h1>
+      <h1>ABC</h1>
+      <h1>ABC</h1>
     </div>
   );
 }

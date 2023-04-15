@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import tmdb from "../../api/tmdb";
 const MovieDashBoardContext = React.createContext();
+//url?theloai=1
 
 const MovieDataProvider = ({ children }) => {
   const [movieGenreId, setMovieGenreId] = useState([]);
@@ -21,7 +22,7 @@ const MovieDataProvider = ({ children }) => {
       fetchGenresMoviesWithId();
     }
   }, [reciveId]);
-
+  //useRef , //useReducer , //debounce, t...800,r...800 //useMemo //infinite-scroll //useLoadData in ReactRouter
   return (
     <MovieDashBoardContext.Provider value={{ movieGenreId, setReciveId }}>
       {children}

@@ -4,23 +4,34 @@ import tmdb from "../../../api/tmdb";
 function MovieList() {
   const [moviesTrending, setMoviesTrending] = useState([]);
   const [moviesGenres, setMoviesGenres] = useState([]);
+  const [movieGenreId, setMovieGenreId] = useState([]);
 
+  //This function is for the Poster of the Movie
   const getPoster = (poster_path) => {
     return `https://www.themoviedb.org/t/p/w440_and_h660_face${poster_path}`;
   };
-
-  const testingData = () => {
-    console.log(moviesTrending, "Trending Movies"); //working ok with Render
-    console.log(moviesGenres, "Genres Movies"); //working ok with Render
+  //This function is for the Fetching Data and return Data with specific movieGenreID
+  const fetchGenresMoviesWithId = async (idGenre) => {
+    const { data } = await tmdb.get(
+      `discover/movie?api_key=951a265e3ef47c76b1be4410641ac67e&with_genres=${idGenre}`
+    );
+    const saveData = await data.results;
+    setMovieGenreId(saveData);
   };
 
+  //This useEffect for fetching the Data when first time Render and Re-render.
   useEffect(() => {
+    //This is for the default fetching Data with specific ID .
+    //Purpose : for the Home Page render out the section of these Movies Genres.Such as: action, comedy,...
+    //Using to a Component to passing in the ID : <MovieListWithGenre id={} />
+    //And Render to the Home Page
+    // fetchGenresMoviesWithId(28);
+
     //fetching trending movies
     const fetchTrendingMovies = async () => {
       const { data } = await tmdb.get("trending/all/day");
       setMoviesTrending(data.results);
       const getData = `${data.results.map((result) => result.id)}`;
-      console.log(getData);
       //This is for the detail of movie id to get key.
     };
     fetchTrendingMovies();
@@ -29,31 +40,49 @@ function MovieList() {
     const fetchGenresMovies = async () => {
       const { data } = await tmdb.get("genre/movie/list");
       setMoviesGenres(data.genres);
-      const getData = data.genres;
     };
     fetchGenresMovies();
   }, []);
 
   return (
     <div>
-      <button onClick={testingData}>Testing data</button>
-      {moviesGenres.map((genre) => {
-        return (
-          <div key={genre.id}>
-            <button>{genre.name}</button>
-          </div>
-        );
-      })}
-      {moviesTrending.map((movie) => {
-        return (
-          <div key={movie.id}>
-            {movie.original_title}
-            {movie.id}
-            {movie.release_date}
-            <img src={getPoster(movie.poster_path)}></img>
-          </div>
-        );
-      })}
+      <button>Testing data</button>
+      <div className="grid grid-cols-3 gap-2">
+        {moviesGenres.map((genre) => {
+          return (
+            <div key={genre.id}>
+              <button
+                className="bg-slate-400 rounded-full px-3 py-1"
+                onClick={() => fetchGenresMoviesWithId(genre.id)}
+              >
+                {genre.name}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+      <div className="w-full flex gap-3">
+        {movieGenreId.map((movie) => {
+          return (
+            <div key={movie.id}>
+              <h1>{movie.original_title}</h1>
+              <img src={getPoster(movie.poster_path)}></img>
+            </div>
+          );
+        })}
+      </div>
+      {/* <div>
+        {moviesTrending.map((movie) => {
+          return (
+            <div key={movie.id}>
+              {movie.original_title}
+              {movie.id}
+              {movie.release_date}
+              <img src={getPoster(movie.poster_path)}></img>
+            </div>
+          );
+        })}
+      </div> */}
     </div>
   );
 }

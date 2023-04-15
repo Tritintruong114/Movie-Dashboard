@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import netflixlogo from "../../../public/assets/netflixlogo.png";
+import netflixlogo from "./netflixlogo.png";
 import { Link } from "react-router-dom";
 import {
   UilSearch,
@@ -18,21 +18,26 @@ const arrayButtonLink = [
   { path: "cartoons", id: 3, name: "Cartoons" },
   { path: "series", id: 4, name: "Series" },
 ];
+
 function TopNavigation() {
   const [open, setOpen] = useState(false);
   return (
     <div className="bg-white flex justify-between items-center px-3">
-      <div className="z-auto">
-        <img className="h-9" src={netflixlogo} alt="logo"></img>
-      </div>
+      <Link to={"/"}>
+        <div className="z-auto cursor-pointer">
+          <img className="h-9 cursor-pointer" src={netflixlogo} alt="logo" />
+        </div>
+      </Link>
       <div
         className={`${
           open ? "top-9" : "top-[-510px]"
-        } grid z-0 gap-3 text-center absolute font-poppins transition-all sm:transition-none duration-600 ease-in-out opacity-100 pl-3 top-9 left-0 bg-white w-full sm:relative sm:opacity-100 sm:flex sm:top-0`}
+        } grid z-0 gap-3 text-center absolute font-poppins transition-all sm:transition-none duration-600 ease-in-out opacity-100 top-9 left-0 bg-white w-full sm:relative sm:opacity-100 sm:flex sm:top-0`}
       >
         {arrayButtonLink.map((button) => (
           <Link to={button.path} key={button.id}>
-            {button.name}
+            <h1 className="font-medium hover:bg-red-900 hover:text-white md:hover:text-red-900 md:hover:bg-white py-3">
+              {button.name}
+            </h1>
           </Link>
         ))}
       </div>

@@ -1,11 +1,9 @@
-import MovieList from "./components/Movies/MovieList";
-import HomePage from "./pages/HomePage";
+import { Outlet } from "react-router";
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
-      <MovieList />
+      <Outlet />
     </div>
   );
 }

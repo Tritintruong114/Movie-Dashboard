@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
-import { useContext } from "react";
-import { MovieDashBoardContext } from "../contexts/MovieDashBoardContext";
+import TopNavigation from "./leftSection/TopNavigation";
 
 function HomePage() {
-  const { movieGenreId, setReciveId } = useContext(MovieDashBoardContext);
-
   return (
-    <div>
-      <button className="bg-slate-600" onClick={() => setReciveId(27)}>
-        CLICK HERE
-      </button>
-      {movieGenreId.map((movie) => (
-        <h1>{movie.original_title}</h1>
-      ))}
+    <div className="flex flex-row w-screen h-screen">
+      <div className="w-screen h-full absolute md:relative bg-slate-500">
+        <TopNavigation />
+      </div>
+      <div className="opacity-0 md:w-1/3 xl:w-1/3 sm:opacity-100 sm:visible">
+        This is for the USER
+      </div>
     </div>
   );
 }

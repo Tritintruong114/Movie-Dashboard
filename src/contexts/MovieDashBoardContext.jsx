@@ -6,8 +6,8 @@ const MovieDashBoardContext = React.createContext();
 
 const MovieDataProvider = ({ children }) => {
   const [movieGenreId, setMovieGenreId] = useState([]);
-  const [inputValueForSearch, setInputValueForSearch] = useState("");
   const [reciveId, setReciveId] = useState(null);
+  const [getFetchMoviesWithSearch, setGetFetchMoviesWithSearch] = useState([]);
 
   const fetchGenresMoviesWithId = async () => {
     const { data } = await tmdb.get(
@@ -29,8 +29,8 @@ const MovieDataProvider = ({ children }) => {
       value={{
         movieGenreId,
         setReciveId,
-
-        setInputValueForSearch,
+        getFetchMoviesWithSearch,
+        setGetFetchMoviesWithSearch,
       }}
     >
       {children}

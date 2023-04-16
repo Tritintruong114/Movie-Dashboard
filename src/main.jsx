@@ -17,11 +17,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "home",
+        index: "/",
         element: <HomePages />,
         children: [
           {
-            index: true,
+            index: "home",
             element: <Home />,
           },
           {
@@ -41,6 +41,10 @@ const router = createBrowserRouter([
             element: <MoviesPage />,
           },
         ],
+      },
+      {
+        index: true,
+        element: <HomePages />,
       },
     ],
   },

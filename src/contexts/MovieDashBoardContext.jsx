@@ -17,13 +17,6 @@ const MovieDataProvider = ({ children }) => {
     console.log(saveData, `This is data of genre id ${reciveId}`);
     setMovieGenreId(saveData);
   };
-  const fetchSearchMoviesWithName = async (inputName) => {
-    const { data } = await tmdb.get(`search/movie`, {
-      params: { query: inputName },
-    });
-    const saveData = await data.results;
-    console.log(saveData, "THIS IS Testing");
-  };
 
   useEffect(() => {
     if (reciveId) {
@@ -36,7 +29,7 @@ const MovieDataProvider = ({ children }) => {
       value={{
         movieGenreId,
         setReciveId,
-        fetchSearchMoviesWithName,
+
         setInputValueForSearch,
       }}
     >

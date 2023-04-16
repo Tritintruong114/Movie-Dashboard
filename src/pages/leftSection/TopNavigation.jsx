@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import netflixlogo from "./netflixlogo.png";
 import { Link } from "react-router-dom";
 import {
@@ -7,7 +7,6 @@ import {
   UilBars,
   UilMultiply,
 } from "@iconscout/react-unicons";
-import { MovieDashBoardContext } from "../../contexts/MovieDashBoardContext";
 const arrayButtonLink = [
   {
     id: 1,
@@ -18,15 +17,11 @@ const arrayButtonLink = [
   { path: "cartoons", id: 3, name: "Cartoons" },
   { path: "series", id: 4, name: "Series" },
 ];
+import tmdb from "../../../api/tmdb";
 
 function TopNavigation() {
-  const { fetchSearchMoviesWithName, setInputValueForSearch } = useContext(
-    MovieDashBoardContext
-  );
   const [open, setOpen] = useState(false);
   const [isSearchClicked, setIsSearchCliced] = useState(false);
-
-  const [searchInputMovie, setSearchInputMoive] = useState("");
   const [inputValue, setInputValue] = useState("");
 
   const handleInputValue = (event) => {
@@ -35,14 +30,17 @@ function TopNavigation() {
 
   const handleEnterDown = (event) => {
     if (event.key === "Enter") {
-      setSearchInputMoive(inputValue);
       setIsSearchCliced(false);
       console.log(inputValue, "This is Enter action");
-      //this will have a function fetch movie with input and return data
-      //Then show the data in a component that have path: /search={inputMovieName}
-      setInputValueForSearch(inputValue);
-      console.log(setInputValueForSearch);
+      fetchSearchMoviesWithName(inputValue);
     }
+  };
+  const fetchSearchMoviesWithName = async (inputName) => {
+    const { data } = await tmdb.get(`search/movie`, {
+      params: { query: inputName },
+    });
+    const saveData = await data.results;
+    console.log(saveData, "THIS IS Testing");
   };
 
   return (
@@ -94,7 +92,7 @@ function TopNavigation() {
             onClick={() => setIsSearchCliced(!isSearchClicked)}
           />
         )}
-        <UilBell onClick={() => fetchSearchMoviesWithName(searchInputMovie)} />
+        <UilBell />
       </div>
     </div>
   );

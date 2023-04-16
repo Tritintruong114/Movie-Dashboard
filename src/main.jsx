@@ -10,6 +10,7 @@ import CartoonsPage from "./pages/CartoonsPage";
 import SeriesPage from "./pages/SeriesPage";
 import MoviesPage from "./pages/MoviesPage";
 import Home from "./pages/Home";
+import Login from "./components/user/Login";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
             element: <MoviesPage />,
           },
         ],
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         index: true,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import netflixlogo from "./netflixlogo.png";
 import { Link } from "react-router-dom";
 import {
@@ -7,7 +7,7 @@ import {
   UilBars,
   UilMultiply,
 } from "@iconscout/react-unicons";
-
+import { MovieDashBoardContext } from "../../contexts/MovieDashBoardContext";
 const arrayButtonLink = [
   {
     id: 1,
@@ -20,18 +20,42 @@ const arrayButtonLink = [
 ];
 
 function TopNavigation() {
+  const { fetchSearchMoviesWithName, setInputValueForSearch } = useContext(
+    MovieDashBoardContext
+  );
   const [open, setOpen] = useState(false);
+  const [isSearchClicked, setIsSearchCliced] = useState(false);
+
+  const [searchInputMovie, setSearchInputMoive] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputValue = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleEnterDown = (event) => {
+    if (event.key === "Enter") {
+      setSearchInputMoive(inputValue);
+      setIsSearchCliced(false);
+      console.log(inputValue, "This is Enter action");
+      //this will have a function fetch movie with input and return data
+      //Then show the data in a component that have path: /search={inputMovieName}
+      setInputValueForSearch(inputValue);
+      console.log(setInputValueForSearch);
+    }
+  };
+
   return (
     <div className="bg-white flex justify-between items-center px-3">
       <Link to={"/"}>
-        <div className="z-auto cursor-pointer">
+        <div className="z-auto cursor-pointer object-conntain">
           <img className="h-9 cursor-pointer" src={netflixlogo} alt="logo" />
         </div>
       </Link>
       <div
         className={`${
           open ? "top-9" : "top-[-510px]"
-        } grid z-0 gap-3 text-center absolute font-poppins transition-all sm:transition-none duration-600 ease-in-out opacity-100 top-9 left-0 bg-white w-full sm:relative sm:opacity-100 sm:flex sm:top-0`}
+        } grid z-10 sm:pl-3 gap-3 text-center absolute font-poppins transition-all sm:transition-none duration-600 ease-in-out opacity-100 top-9 left-0 bg-white w-full sm:relative sm:opacity-100 sm:flex sm:top-0`}
       >
         {arrayButtonLink.map((button) => (
           <Link to={button.path} key={button.id}>
@@ -56,9 +80,21 @@ function TopNavigation() {
           <UilMultiply />
         </div>
       )}
-      <div className="absolute flex gap-3 px-3 opacity-0 sm:relative sm:opacity-100">
-        <UilSearch />
-        <UilBell />
+      <div className="absolute justify-end gap-1 flex px-3 w-2/4 opacity-0 sm:relative sm:opacity-100">
+        {isSearchClicked ? (
+          <input
+            onChange={handleInputValue}
+            onKeyDown={handleEnterDown}
+            className="border-b capitalize h-full w-full font-poppins focus:outline-none pl-3 rounded-full transition-all duration-1000"
+            placeholder="search"
+          />
+        ) : (
+          <UilSearch
+            className="transition-all "
+            onClick={() => setIsSearchCliced(!isSearchClicked)}
+          />
+        )}
+        <UilBell onClick={() => fetchSearchMoviesWithName(searchInputMovie)} />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import MoviesList from "../components/Movies/MoviesList";
+import { MovieListContainer } from "../components/Movies/MovieListContainer";
 
 function Home() {
   return (
@@ -10,24 +10,11 @@ function Home() {
         </div>
       </div>
       <div className="bg-red-600 gap-3 p-3 flex-col overflow-auto w-full h-3/4 flex">
-        <div className="h-1/4 relative flex-shrink-0 overflow-auto w-full items-center justify-between gap-3 ">
-          <MoviesList genres={"ABC"} />
-        </div>
-        <div className="h-1/4 relative flex-shrink-0 overflow-auto w-full items-center justify-between gap-3 ">
-          <MoviesList genres={"ABC"} />
-        </div>
-        <div className="h-1/4 relative flex-shrink-0 overflow-auto w-full items-center justify-between gap-3 ">
-          <MoviesList genres={"ABC"} />
-        </div>
-        <div className="h-1/4 relative flex-shrink-0 overflow-auto w-full items-center justify-between gap-3 ">
-          <MoviesList genres={"ABC"} />
-        </div>
-        <div className="h-1/4 relative flex-shrink-0 overflow-auto w-full items-center justify-between gap-3 ">
-          <MoviesList genres={"ABC"} />
-        </div>
-        <div className="h-1/4 relative flex-shrink-0 overflow-auto w-full items-center justify-between gap-3 ">
-          <MoviesList genres={"ABC"} />
-        </div>
+        <MovieListContainer />
+        <MovieListContainer />
+        <MovieListContainer />
+        <MovieListContainer />
+        <MovieListContainer />
       </div>
     </div>
   );

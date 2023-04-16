@@ -1,4 +1,6 @@
 import axios from "axios";
+import { useContext } from "react";
+import { MovieDashBoardContext } from "../src/contexts/MovieDashBoardContext";
 
 export default axios.create({
   baseURL: "https://api.themoviedb.org/3",

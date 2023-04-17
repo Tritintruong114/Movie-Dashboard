@@ -3,10 +3,10 @@ import { auth } from "../../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
 import {} from "firebase/auth";
 
-function Success({ welcome }) {
+function Success() {
   const navigate = useNavigate();
   const backtoDashBoard = () => {
-    navigate("/");
+    navigate("/login");
   };
   return (
     <div>
@@ -20,7 +20,7 @@ function Success({ welcome }) {
           onClick={() => backtoDashBoard()}
           className="px-3 bg-red-600 text-white rounded-full py-1"
         >
-          Dashboard
+          Login
         </button>
       </div>
     </div>

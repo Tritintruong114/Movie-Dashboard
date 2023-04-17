@@ -35,13 +35,6 @@ function MovieList() {
       //This is for the detail of movie id to get key.
     };
     fetchTrendingMovies();
-
-    //fetching genre movies
-    const fetchGenresMovies = async () => {
-      const { data } = await tmdb.get("genre/movie/list");
-      setMoviesGenres(data.genres);
-    };
-    fetchGenresMovies();
   }, []);
 
   return (

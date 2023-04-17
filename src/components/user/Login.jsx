@@ -1,48 +1,41 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Link, Navigate } from "react-router-dom";
-import { redirect } from "react-router-dom";
-import { auth } from "../../firebase/firebase-config";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { signInWithGoogle } from "../../firebase/firebase-config";
-export function InputFeild({ inputLabel, name, type }) {
-  return (
-    <div className="relative py-1">
-      <h1>{inputLabel}</h1>
-      <input
-        id={`${name}`}
-        type={`${type}`}
-        autoComplete="off"
-        className={`peer focus:outline-none duration-300 focus:border-red-900 focus:border-b-4 py-1 border-b transition-colors`}
-      ></input>
-      <label
-        forhtml={`${name}`}
-        className={`absolute left-0 text-gray-600 top-1 duration-300 peer-focus:text-xs cursor-text peer-focus:-top-3 transition-all`}
-      ></label>
-    </div>
-  );
-}
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { auth, provider } from "../../firebase/firebase-config";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [user, setUser] = useState({});
+  const [invalidUser, setInvalidUser] = useState(null);
   const navigate = useNavigate();
+  const [isUser, setIsUser] = useState(false);
 
+  const loginWithGoogle = () => {
+    try {
+      signInWithPopup(auth, provider).then((result) => {
+        localStorage.setItem("email", result.user.email);
+        localStorage.setItem("display name", result.user.displayName);
+        navigate("/");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const login = async () => {
+    console.log(loginEmail, "Testing");
     try {
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
-      console.log(user, "THIS IS USER");
+      localStorage.setItem("email", loginEmail);
+      setIsUser(true);
+      navigate("/");
     } catch (error) {
-      console.log(error.message);
+      setInvalidUser(error.message);
     }
-  };
-  const loginButton = () => {
-    navigate("/");
   };
 
   return (
@@ -69,27 +62,35 @@ function Login() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 h-1/4">
-          <InputFeild type="text" name={"username"} inputLabel={"User name"} />
-          <InputFeild
+        <div className="flex flex-col gap-6 h-1/4 items-center justify-center">
+          {invalidUser ? (
+            <h1 className="text-red-600 font-bold text-md">User Not Found</h1>
+          ) : null}
+          <input
+            className="focus:outline-none border-b focus:border-b-4 focus:border-red-950"
+            type="text"
+            placeholder="User name"
+            onChange={(e) => setLoginEmail(e.target.value)}
+          ></input>
+          <input
+            className="focus:outline-none border-b focus:border-b-4 focus:border-red-950"
             type="password"
-            name={"password"}
-            inputLabel={"Password"}
-          />
+            placeholder="Password"
+            onChange={(e) => setLoginPassword(e.target.value)}
+          ></input>
           <Link>
             <p className="text-sm text-red-900">Forgot Password?</p>
           </Link>
         </div>
-
         <div className="flex flex-col w-full gap-3 items-center justify-center">
           <button
-            onClick={() => loginButton()}
+            onClick={() => login()}
             className="w-2/5 sm:w-2/5  md:w-2/5 rounded-full py-1 bg-red-900 text-white"
           >
             Sign in
           </button>
           <button
-            onClickCapture={signInWithGoogle}
+            onClick={loginWithGoogle}
             className="w-full text-center flex items-center justify-center rounded-full py-1 text-red-900"
           >
             <img

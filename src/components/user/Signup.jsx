@@ -31,7 +31,7 @@ function Signup() {
       navigate("/success");
       setRegisterEmail("");
       setRegisterPassword("");
-      console.log(user)
+      console.log(user);
     } catch (error) {
       console.log(error.message);
     }
@@ -66,7 +66,7 @@ function Signup() {
           Register
         </button>
       </div>
-      {isRegisted ? <Success welcome={user.registerEmail} /> : null}
+      {isRegisted ? <Success welcome={user.email} /> : null}
     </div>
   );
 }

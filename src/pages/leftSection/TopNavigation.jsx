@@ -92,7 +92,9 @@ function TopNavigation() {
             onClick={() => setIsSearchCliced(!isSearchClicked)}
           />
         )}
-        <UilBell />
+        <Link to="login">
+          <UilBell />
+        </Link>
       </div>
     </div>
   );

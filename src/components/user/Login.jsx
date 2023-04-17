@@ -1,6 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import { auth } from "../../firebase/firebase-config";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithGoogle } from "../../firebase/firebase-config";
 export function InputFeild({ inputLabel, name, type }) {
   return (
     <div className="relative py-1">
@@ -20,6 +24,27 @@ export function InputFeild({ inputLabel, name, type }) {
 }
 
 function Login() {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+
+  const login = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user, "THIS IS USER");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const loginButton = () => {
+    navigate("/");
+  };
+
   return (
     <div className="flex  h-full font-poppins w-3/4 flex-col xl:flex-row items-center justify-center">
       <div className="opacity-0 absolute xl:relative xl:opacity-100 xl:w-3/4">
@@ -33,7 +58,7 @@ function Login() {
           <p className="text-sm text-opacity-60 text-gray-700">
             Don't have a account ?
           </p>
-          <Link>
+          <Link to={"/signup"}>
             <p className="hover:text-red-600">Creat a account</p>
           </Link>
           <div className="w-full relative">
@@ -57,10 +82,16 @@ function Login() {
         </div>
 
         <div className="flex flex-col w-full gap-3 items-center justify-center">
-          <button className="w-2/5 sm:w-2/5  md:w-2/5 rounded-full py-1 bg-red-900 text-white">
+          <button
+            onClick={() => loginButton()}
+            className="w-2/5 sm:w-2/5  md:w-2/5 rounded-full py-1 bg-red-900 text-white"
+          >
             Sign in
           </button>
-          <button className="w-full text-center flex items-center justify-center rounded-full py-1 text-red-900">
+          <button
+            onClickCapture={signInWithGoogle}
+            className="w-full text-center flex items-center justify-center rounded-full py-1 text-red-900"
+          >
             <img
               className="h-8"
               src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"

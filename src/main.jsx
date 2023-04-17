@@ -11,6 +11,8 @@ import SeriesPage from "./pages/SeriesPage";
 import MoviesPage from "./pages/MoviesPage";
 import Home from "./pages/Home";
 import Login from "./components/user/Login";
+import Signup from "./components/user/Signup";
+import Success from "./components/user/Success";
 
 const router = createBrowserRouter([
   {
@@ -48,8 +50,16 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: "signup",
+        element: <Signup />,
+      },
+      {
         index: true,
         element: <HomePages />,
+      },
+      {
+        path: "success",
+        element: <Success />,
       },
     ],
   },

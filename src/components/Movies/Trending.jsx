@@ -59,16 +59,16 @@ function Trending() {
                   </Link>
                 </div>
               </div>
-              <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
+              {/* <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
                 <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
-                  {/* <iframe
+                  <iframe
                     className="absolute h-full w-full rounded-xl"
                     src="https://www.youtube.com/embed/OOlVmLXaGCM"
                     allowFullScreen
-                  ></iframe> */}
+                  ></iframe>
                 </div>{" "}
                 <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative "></div>
-              </div>
+              </div> */}
             </div>
           </div>
         );

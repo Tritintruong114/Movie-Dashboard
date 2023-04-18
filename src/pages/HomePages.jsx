@@ -17,11 +17,11 @@ function HomePages() {
     <div className="flex flex-row w-screen h-screen ">
       <div className="w-screen h-full  absolute md:relative">
         <TopNavigation />
-        <div className="w-full h-full">
+        <div className="w-full h-full overflow-auto">
           <Outlet />
         </div>
       </div>
-      <div className="opacity-0 font-poppins p-3  md:w-2/5 xl:w-2/5 sm:opacity-100 sm:visible">
+      <div className="opacity-0 font-poppins p-3  md:w-2/5 xl:w-2/5 md:opacity-100 md :visible">
         {!localStorage.getItem("display name") &&
         !localStorage.getItem("email") ? (
           <Link to={"/login"}>

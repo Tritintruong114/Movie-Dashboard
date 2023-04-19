@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import Login from "./components/user/Login";
 import Signup from "./components/user/Signup";
 import Success from "./components/user/Success";
+import Detail from "./pages/Detail";
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
           {
             path: "movies",
             element: <MoviesPage />,
+          },
+          {
+            path: "detail",
+            element: <Detail />,
+          },
+          {
+            path: "search",
+            element: <Search />,
           },
         ],
       },

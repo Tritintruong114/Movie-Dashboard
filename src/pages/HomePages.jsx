@@ -22,7 +22,7 @@ function HomePages() {
         </div>
       </div>
       <div className="opacity-0 font-poppins p-3  md:w-2/5 xl:w-2/5 md:opacity-100 md :visible">
-        {!localStorage.getItem("display name") &&
+        {!localStorage.getItem("display name") && 
         !localStorage.getItem("email") ? (
           <Link to={"/login"}>
             <button>Login</button>

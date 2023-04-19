@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import netflixlogo from "./netflixlogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   UilSearch,
   UilBell,
@@ -23,6 +23,7 @@ function TopNavigation() {
   const [open, setOpen] = useState(false);
   const [isSearchClicked, setIsSearchCliced] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
   const handleInputValue = (event) => {
     setInputValue(event.target.value);
@@ -33,6 +34,7 @@ function TopNavigation() {
       setIsSearchCliced(false);
       console.log(inputValue, "This is Enter action");
       fetchSearchMoviesWithName(inputValue);
+      navigate("/search");
     }
   };
   const fetchSearchMoviesWithName = async (inputName) => {

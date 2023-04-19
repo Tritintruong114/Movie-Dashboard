@@ -25,7 +25,7 @@ function Trending() {
       setGetIdForTrailer(getData);
       console.log(data.results.map((result) => result.id));
       return getData;
-    }; //loop taisao console tai dong 25 ko duocj, ma tai 35 lai
+    };
     //fetchVideoTrailer
     const getUrlForVideo = async () => {
       const getData = await fetchTrendingMovies();
@@ -68,17 +68,22 @@ function Trending() {
                   </Link>
                 </div>
               </div>
-              {/* <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
-                {listOfTrailer.map((key) => {
-                  <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
-                    <iframe
-                      className="absolute h-full w-full rounded-xl"
-                      src={getTrailer("LTFGH0rJ-EY")}
-                      allowFullScreen
-                    ></iframe>
-                  </div>;
-                })}
-              </div> */}
+              <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
+                <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
+                  <iframe
+                    className="absolute h-full w-full rounded-xl"
+                    src={getTrailer("LTFGH0rJ-EY")}
+                    allowFullScreen
+                  ></iframe>
+                </div>{" "}
+                <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
+                  <iframe
+                    className="absolute h-full w-full rounded-xl"
+                    src={getTrailer("LTFGH0rJ-EY")}
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
             </div>
           </div>
         );

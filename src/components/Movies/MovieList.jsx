@@ -16,17 +16,12 @@ function MovieList() {
       `discover/movie?api_key=951a265e3ef47c76b1be4410641ac67e&with_genres=${idGenre}`
     );
     const saveData = await data.results;
+    console.log(saveData);
     setMovieGenreId(saveData);
   };
 
   //This useEffect for fetching the Data when first time Render and Re-render.
   useEffect(() => {
-    //This is for the default fetching Data with specific ID .
-    //Purpose : for the Home Page render out the section of these Movies Genres.Such as: action, comedy,...
-    //Using to a Component to passing in the ID : <MovieListWithGenre id={} />
-    //And Render to the Home Page
-    // fetchGenresMoviesWithId(28);
-
     //fetching trending movies
     const fetchTrendingMovies = async () => {
       const { data } = await tmdb.get("trending/all/day");

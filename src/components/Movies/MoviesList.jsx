@@ -3,15 +3,19 @@ import tmdb from "../../../api/tmdb";
 
 export function MovieInfo({ filmTilte, backDrop }) {
   const getPoster = (poster_path) => {
-    return `https://image.tmdb.org/t/p/original${poster_path}`;
+    return `https://image.tmdb.org/t/p/original${poster_path} `;
   };
   return (
-    <div className="bg-red-300 w-3/4 relative sm:w-3/4 md:w-2/4 xl:w-1/4 flex-shrink-0">
+    <div className="  w-3/4 relative sm:w-3/4 md:w-2/4 xl:w-2/4 flex-shrink-0 rounded-xl">
       <img
-        className="absolute  object-cover w-full h-full"
+        className="absolute  object-cover w-full h-full rounded-xl"
         src={getPoster(backDrop)}
       ></img>
-      <h1 className="absolute text-white font-medium bottom-3 left-3">
+      <img
+        className="absolute h-10 top-3"
+        src="https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo-2006.png"
+      ></img>
+      <h1 className="absolute text-white font-medium bottom-3 left-3 text-sm md:text-lg xl:text-xl">
         {filmTilte}
       </h1>
     </div>
@@ -28,17 +32,17 @@ function MoviesList({ genresId }) {
         `https://api.themoviedb.org/3/discover/movie?api_key=951a265e3ef47c76b1be4410641ac67e&with_genres=${genresId}`
       );
       setListOfMovies(data.results);
-      console.log(data.results);
+      // console.log(data.results);
     };
     getData();
   }, []);
   console.log(listOfMovies);
   return (
-    <div className="bg-yellow-300 h-full gap-3 w-full flex overflow-x-auto">
+    <div className=" h-full gap-3 w-full flex overflow-x-auto  shadow-xl">
       {listOfMovies.map((movie) => {
         return (
           <MovieInfo
-            backDrop={movie.backdrop_path}
+            backDrop={movie.backdrop_path || movie.poster_path}
             filmTilte={movie.original_title}
           />
         );

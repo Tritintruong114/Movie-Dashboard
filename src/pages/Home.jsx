@@ -7,7 +7,11 @@ function Home() {
     <div className="h-full w-full flex flex-col text-center justify-around">
       <Trending autoslide={true} autoSlideInterval={1000} />
       <div className="gap-3 p-3 flex-col w-full h-full flex">
-        <MovieListContainer />
+        <MovieListContainer genresId={80} />
+        <MovieListContainer genresId={16} />
+        <MovieListContainer genresId={10752} />
+        <MovieListContainer genresId={36} />
+        <MovieListContainer genresId={37} />
       </div>
     </div>
   );

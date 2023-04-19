@@ -6,19 +6,21 @@ export function MovieInfo({ filmTilte, backDrop }) {
     return `https://image.tmdb.org/t/p/original${poster_path} `;
   };
   return (
-    <div className="  w-3/4 relative sm:w-3/4 md:w-2/4 xl:w-1/6 flex-shrink-0 rounded-xl">
+    <div className="w-3/4 relative sm:w-3/4 md:w-2/4 xl:w-2/6 flex-shrink-0 rounded-xl">
       <img
-        className="absolute  object-cover w-full h-full rounded-xl"
+        className="absolute object-cover w-full h-full rounded-xl"
         src={getPoster(backDrop)}
       ></img>
       <img
-        className="absolute h-10 top-3"
+        className="absolute h-10 top-3 rounded-xl"
         src="https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo-2006.png"
       ></img>
-      <div className="absolute w-full h-1/4 bg-black bottom-0 opacity-10"></div>
-      <h1 className="absolute text-white font-medium bottom-3 left-3 text-sm md:text-lg xl:text-xl">
-        {filmTilte}
-      </h1>
+      <div className="absolute w-full flex items-center justify-center rounded-3xl h-1/4 bottom-0 bg-opacity-5">
+        <h1 className="text-white z-10 font-medium  bottom-3  h-full left-3 text-sm md:text-lg xl:text-xl">
+          {filmTilte}
+        </h1>
+        <div className="w-full h-full absolute bg-black blur bg-opacity-20"></div>
+      </div>
     </div>
   );
 }
@@ -39,7 +41,7 @@ function MoviesList({ genresId }) {
   }, []);
   console.log(listOfMovies);
   return (
-    <div className=" h-full gap-3 w-full flex overflow-x-auto  shadow-xl">
+    <div className="h-full gap-3 w-full flex">
       {listOfMovies.map((movie) => {
         return (
           <MovieInfo

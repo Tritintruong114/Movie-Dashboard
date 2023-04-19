@@ -8,10 +8,6 @@ function Home() {
       <Trending autoslide={true} autoSlideInterval={1000} />
       <div className="gap-3 p-3 flex-col w-full h-full flex">
         <MovieListContainer />
-        <MovieListContainer />
-        <MovieListContainer />
-        <MovieListContainer />
-        <MovieListContainer />
       </div>
     </div>
   );

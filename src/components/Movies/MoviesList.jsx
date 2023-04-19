@@ -6,7 +6,7 @@ export function MovieInfo({ filmTilte, backDrop }) {
     return `https://image.tmdb.org/t/p/original${poster_path} `;
   };
   return (
-    <div className="  w-3/4 relative sm:w-3/4 md:w-2/4 xl:w-2/4 flex-shrink-0 rounded-xl">
+    <div className="  w-3/4 relative sm:w-3/4 md:w-2/4 xl:w-1/6 flex-shrink-0 rounded-xl">
       <img
         className="absolute  object-cover w-full h-full rounded-xl"
         src={getPoster(backDrop)}
@@ -15,6 +15,7 @@ export function MovieInfo({ filmTilte, backDrop }) {
         className="absolute h-10 top-3"
         src="https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo-2006.png"
       ></img>
+      <div className="absolute w-full h-1/4 bg-black bottom-0 opacity-10"></div>
       <h1 className="absolute text-white font-medium bottom-3 left-3 text-sm md:text-lg xl:text-xl">
         {filmTilte}
       </h1>

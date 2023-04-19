@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import tmdb from "../../../api/tmdb";
-import { UilPlay, UilInfo } from "@iconscout/react-unicons";
+import { UilPlay, UilInfo, UilHeart } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
 
 function Trending() {
@@ -13,9 +13,7 @@ function Trending() {
   const getPoster = (poster_path) => {
     return `https://image.tmdb.org/t/p/original${poster_path}`;
   };
-  const getTrailer = (filmkey) => {
-    return `https://www.youtube.com/embed/${filmkey}`;
-  };
+
   useEffect(() => {
     //fetching trending movies
     const fetchTrendingMovies = async () => {
@@ -23,7 +21,7 @@ function Trending() {
       setMoviesTrending(data.results); //
       const getData = `${data.results.map((result) => result.id)}`;
       setGetIdForTrailer(getData);
-      console.log(data.results.map((result) => result.id));
+      console.log(data);
       return getData;
     };
     //fetchVideoTrailer
@@ -50,7 +48,7 @@ function Trending() {
             <div className="w-full h-full flex-shrink-0">
               <div className="absolute blur-3xl bg-white h-1/4 rounded-full w-full bottom-0 opacity-30"></div>
               <img
-                className=" object-cover w-full h-full rounded-3xl"
+                className=" object-cover object-center w-full h-full rounded-3xl"
                 src={getPoster(`${movie.backdrop_path}`)}
               ></img>
               <div className="absolute bottom-0 flex flex-col text-left p-3 pl-12 gap-3 md:bottom-3 xl:bottom-1/4">
@@ -61,6 +59,9 @@ function Trending() {
                   <button className="w-fit px-3 xl:px-5 xl:py-3 text-xs flex gap-1 md:text-sm py-1 items-center font-medium md:px-3 md:py-1 rounded-xl text-white bg-red-900">
                     <UilPlay /> Watch Now
                   </button>
+                  <button className="text-white bg-red-900 rounded-xl px-2 py-1">
+                    <UilHeart />
+                  </button>
                   <Link to={`/detail/${movie.id}`}>
                     <button className="bg-red-900 flex items-center text-white w-fit p-1 rounded-xl">
                       <UilInfo size="21" />
@@ -68,7 +69,7 @@ function Trending() {
                   </Link>
                 </div>
               </div>
-              <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
+              {/* <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
                 <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
                   <iframe
                     className="absolute h-full w-full rounded-xl"
@@ -83,7 +84,7 @@ function Trending() {
                     allowFullScreen
                   ></iframe>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         );

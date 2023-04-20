@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import tmdb from "../../../api/tmdb";
 import { UilPlay, UilInfo, UilHeart } from "@iconscout/react-unicons";
 import { Link } from "react-router-dom";
+import { GlobalContext } from "../../context/GlobalState";
 
 function Trending() {
+  const { addMovieToWatchLists, watchList } = useContext(GlobalContext);
   const [moviesTrending, setMoviesTrending] = useState([]);
   const [getIdForTrailer, setGetIdForTrailer] = useState([]);
   const [getKey, setGetKey] = useState([]);
@@ -61,9 +63,7 @@ function Trending() {
                       <UilPlay /> Watch Now
                     </button>
                   </Link>
-                  <button className="text-white bg-red-900 rounded-xl px-2 py-1">
-                    <UilHeart />
-                  </button>
+            
                   <Link to={`/detail/${movie.id}`}>
                     <button className="bg-red-900 flex items-center text-white w-fit p-1 rounded-xl">
                       <UilInfo size="21" />

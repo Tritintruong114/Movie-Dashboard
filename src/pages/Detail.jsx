@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import tmdb from "../../api/tmdb";
 import { useParams } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalState";
+import { UilPlay, UilInfo, UilHeart } from "@iconscout/react-unicons";
+
 //useParam lay ID , nhu trong khi set Router da dat "detail:id"
 const Detail = () => {
+  const { addMovieToWatchLists, watchList } = useContext(GlobalContext);
+
   const getPoster = (poster_path) => {
     return `https://image.tmdb.org/t/p/original${poster_path}`;
   };
@@ -16,17 +21,15 @@ const Detail = () => {
   const [listOfVideos, setListOfVideos] = useState([]);
   const [getCredits, setGetCredits] = useState([]);
 
+  let storedMovie = watchList.find((movie) => movie?.id === movie?.id);
+
   useEffect(() => {
     const fetchDetailMovie = async () => {
       try {
-        console.log("ABC");
         const data = await tmdb.get(`movie/${movieId}`);
         const saveData = data;
         setGetDetail(saveData);
-        console.log(saveData);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchDetailMovie();
 
@@ -34,18 +37,16 @@ const Detail = () => {
       const { data } = await tmdb.get(`movie/${movieId}/videos`);
       // console.log(data.results);
       setListOfVideos(data.results.slice(0, 3));
-      console.log(listOfVideos);
     };
     getUrlForVideo();
 
     const getCast = async () => {
       const { data } = await tmdb.get(`movie/${movieId}/credits`);
       setGetCredits(data.cast.slice(0, 10));
-      console.log(data.cast.slice(0, 6), "This is credit");
     };
     getCast();
   }, []);
-  console.log(getCredits);
+
   return (
     <div className="h-full overflow-auto text-white w-full relative font-poppins">
       <img
@@ -69,6 +70,15 @@ const Detail = () => {
               </h1>
               <div className="flex items-center justify-center gap-3 flex-col  text-center">
                 <div className="flex gap-1 items-center">
+                  <button
+                    disabled={
+                      storedMovie?.id === getDetail?.data?.id ? true : false
+                    }
+                    onClick={() => addMovieToWatchLists(getDetail.data)}
+                    className="text-white bg-red-900 rounded-xl px-2 py-1"
+                  >
+                    <UilHeart />
+                  </button>
                   <p className="text-black bg-yellow-400 w-fit rounded-xl px-3 py-1 font-extrabold ">
                     IMDb : {Math.floor(getDetail?.data?.vote_average)}
                   </p>

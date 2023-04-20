@@ -44,59 +44,63 @@ function Login() {
         src="https://images7.alphacoders.com/115/1152297.jpg"
         className="absolute h-full w-full object-cover"
       ></img>
+      <div className="h-full w-full absolute bg-black opacity-60 md:opacity-30 xl:opacity-0"></div>
       <div className="flex h-full font-poppins w-full flex-col xl:flex-row items-center justify-center p-3">
         <div className="opacity-0 absolute xl:relative  xl:w-2/4 z-10 bg-white">
           This is netflix login dashboard for SM MD XL screen
         </div>
 
-        <div className="h-3/4 w-full md:w-2/4 rounded-xl flex flex-col xl:w-1/4 items-center justify-center z-10 bg-white">
-          <div className="flex flex-col h-1/4 text-left justify-center  pb-12">
-            <h1 className="font-bold text-xl">Welcome to Netflix,</h1>
+        <div className="h-3/4 w-full md:w-2/4 rounded-xl flex flex-col xl:w-1/4 items-center justify-center z-10 backdrop-blur text-white">
+          <div className="w-full h-full absolute bg-white opacity-10 rounded-3xl z-0"></div>
+          <div className="flex flex-col h-1/4 justify-center items-center pb-12 z-10">
+            <h1 className="font-bold text-xl md:text-3xl">
+              Welcome to Netflix,
+            </h1>
             <h1 className="font-bold">Sign In to Continue.</h1>
-            <p className="text-sm text-opacity-60 text-gray-700">
-              Don't have a account ?
-            </p>
+            <p className="text-sm text-opacity-60">Don't have a account ?</p>
             <Link to={"/signup"}>
-              <p className="hover:text-red-600">Creat a account</p>
+              <p className="hover:text-red-600 cursor-pointer font-bold text-red-500">
+                Creat a account
+              </p>
             </Link>
-            <div className="w-full relative">
+            <div className="w-full relative flex justify-center items-center">
               <img
-                className="absolute"
+                className="h-full w-1/2"
                 src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
               ></img>
             </div>
           </div>
 
-          <div className="flex flex-col gap-6 h-1/4 items-center justify-center">
+          <div className="flex flex-col gap-3 h-1/4 items-center justify-center z-10">
             {invalidUser ? (
-              <h1 className="text-red-600 font-bold text-md">User Not Found</h1>
+              <h1 className="font-bold text-md">User Not Found</h1>
             ) : null}
             <input
-              className="focus:outline-none border-b focus:border-b-4 focus:border-red-950"
+              className="focus:outline-none border-b rounded-xl pl-3 py-1 text-black"
               type="text"
               placeholder="User name"
               onChange={(e) => setLoginEmail(e.target.value)}
             ></input>
             <input
-              className="focus:outline-none border-b focus:border-b-4 focus:border-red-950"
+              className="focus:outline-none border-b  rounded-xl pl-3 py-1  text-black"
               type="password"
               placeholder="Password"
               onChange={(e) => setLoginPassword(e.target.value)}
             ></input>
             <Link>
-              <p className="text-sm text-red-900">Forgot Password?</p>
+              <p className="text-sm">Forgot Password?</p>
             </Link>
           </div>
-          <div className="flex flex-col w-full gap-3 items-center justify-center">
+          <div className="flex flex-col w-full gap-3 items-center justify-center z-10">
             <button
               onClick={() => login()}
-              className="w-2/5 sm:w-2/5  md:w-2/5 rounded-full py-1 bg-red-900 text-white"
+              className="w-3/5 sm:w-3/5  md:w-3/5 rounded-full py-2 bg-red-900 text-white"
             >
               Sign in
             </button>
             <button
               onClick={loginWithGoogle}
-              className="w-full text-center flex items-center justify-center rounded-full py-1 text-red-900"
+              className="w-3/5 md:w-3/5 xl:w-3/5 text-sm text-center flex items-center justify-center rounded-full py-1 bg-white text-black"
             >
               <img
                 className="h-8"

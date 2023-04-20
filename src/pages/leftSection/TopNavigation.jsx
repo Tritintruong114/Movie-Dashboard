@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../../context/GlobalState";
 import netflixlogo from "./netflixlogo.png";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -19,6 +20,7 @@ const arrayButtonLink = [
 ];
 
 function TopNavigation() {
+  const { addMovieToWatchLists } = useContext(GlobalContext);
   const [open, setOpen] = useState(false);
   const [isSearchClicked, setIsSearchCliced] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -26,6 +28,9 @@ function TopNavigation() {
 
   const handleInputValue = (event) => {
     setInputValue(event.target.value);
+    if (inputValue.length > 0) {
+      navigate(`/search/${inputValue}`);
+    }
   };
 
   const handleEnterDown = (event) => {
@@ -35,13 +40,6 @@ function TopNavigation() {
       navigate(`/search/${inputValue}`);
     }
   };
-  // const fetchSearchMoviesWithName = async (inputName) => {
-  //   const { data } = await tmdb.get(`search/movie`, {
-  //     params: { query: inputName },
-  //   });
-  //   const saveData = await data.results;
-  //   console.log(saveData, "THIS IS Testing");
-  // };
 
   return (
     <div className="bg-white flex justify-between items-center px-3">

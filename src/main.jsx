@@ -15,6 +15,7 @@ import Signup from "./components/user/Signup";
 import Success from "./components/user/Success";
 import Detail from "./pages/Detail";
 import Search from "./pages/Search";
+import { GlobalProvider } from "./context/GlobalState";
 
 const router = createBrowserRouter([
   {
@@ -77,8 +78,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MovieDataProvider>
-      <RouterProvider router={router} />
-    </MovieDataProvider>
+    <GlobalProvider>
+      <MovieDataProvider>
+        <RouterProvider router={router} />
+      </MovieDataProvider>
+    </GlobalProvider>
   </React.StrictMode>
 );

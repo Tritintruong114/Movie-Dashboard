@@ -56,9 +56,11 @@ function Trending() {
                   {movie.original_title || movie.title || movie.name}
                 </h1>
                 <div className="flex items-center text-center gap-1">
-                  <button className="w-fit px-3 xl:px-5 xl:py-3 text-xs flex gap-1 md:text-sm py-1 items-center font-medium md:px-3 md:py-1 rounded-xl text-white bg-red-900">
-                    <UilPlay /> Watch Now
-                  </button>
+                  <Link to={`/detail/${movie.id}`}>
+                    <button className="w-fit px-3 xl:px-5 xl:py-3 text-xs flex gap-1 md:text-sm py-1 items-center font-medium md:px-3 md:py-1 rounded-xl text-white bg-red-900">
+                      <UilPlay /> Watch Now
+                    </button>
+                  </Link>
                   <button className="text-white bg-red-900 rounded-xl px-2 py-1">
                     <UilHeart />
                   </button>

@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             element: <Detail />,
           },
           {
-            path: "search",
+            path: "search/:name",
             element: <Search />,
           },
         ],

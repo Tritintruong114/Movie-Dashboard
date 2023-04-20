@@ -17,7 +17,6 @@ const arrayButtonLink = [
   { path: "cartoons", id: 3, name: "Cartoons" },
   { path: "series", id: 4, name: "Series" },
 ];
-import tmdb from "../../../api/tmdb";
 
 function TopNavigation() {
   const [open, setOpen] = useState(false);
@@ -33,23 +32,26 @@ function TopNavigation() {
     if (event.key === "Enter") {
       setIsSearchCliced(false);
       console.log(inputValue, "This is Enter action");
-      fetchSearchMoviesWithName(inputValue);
-      navigate("/search");
+      navigate(`/search/${inputValue}`);
     }
   };
-  const fetchSearchMoviesWithName = async (inputName) => {
-    const { data } = await tmdb.get(`search/movie`, {
-      params: { query: inputName },
-    });
-    const saveData = await data.results;
-    console.log(saveData, "THIS IS Testing");
-  };
+  // const fetchSearchMoviesWithName = async (inputName) => {
+  //   const { data } = await tmdb.get(`search/movie`, {
+  //     params: { query: inputName },
+  //   });
+  //   const saveData = await data.results;
+  //   console.log(saveData, "THIS IS Testing");
+  // };
 
   return (
     <div className="bg-white flex justify-between items-center px-3">
       <Link to={"/"}>
-        <div className="z-auto cursor-pointer object-conntain">
-          <img className="h-9 cursor-pointer" src={netflixlogo} alt="logo" />
+        <div className="z-auto h-fit w-fit cursor-pointer object-conntain">
+          <img
+            className="xl:h-20 xl:w-96 sm:w-80 sm:h-16 h-12 object-cover cursor-pointer"
+            src={netflixlogo}
+            alt="logo"
+          />
         </div>
       </Link>
       <div

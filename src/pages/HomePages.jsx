@@ -18,7 +18,7 @@ function HomePages() {
     <div className="flex flex-row w-screen h-screen ">
       <div className="w-screen h-full  absolute md:relative">
         <TopNavigation />
-        <div className="w-full h-screen overflow-hidden md:overflow-auto xl:overflow-auto">
+        <div className="w-full h-screen  md:overflow-auto xl:overflow-auto">
           <Outlet />
         </div>
       </div>

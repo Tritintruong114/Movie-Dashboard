@@ -19,10 +19,10 @@ export function MovieInfo({ filmTilte, backDrop, movieID }) {
         src="https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo-2006.png"
       ></img>
       <div className="absolute w-full flex items-center justify-center rounded-3xl h-1/4 bottom-0 bg-opacity-5">
-        <h1 className="text-white z-10 font-medium  bottom-3  h-full left-3 text-sm md:text-lg xl:text-xl">
+        {/* <h1 className="text-white z-10 font-medium bottom-3  h-full left-3 text-sm md:text-lg xl:text-xl">
           {filmTilte}
-        </h1>
-        <div className="w-full h-full absolute bg-black blur bg-opacity-20"></div>
+        </h1> */}
+        {/* <div className="w-full h-full absolute bg-black blur bg-opacity-20"></div> */}
       </div>
     </div>
   );

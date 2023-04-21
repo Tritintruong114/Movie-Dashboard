@@ -79,7 +79,7 @@ const Detail = () => {
                   >
                     <UilHeart />
                   </button>
-                  <p className="text-black bg-yellow-400 w-fit rounded-xl px-3 py-1 font-extrabold ">
+                  <p className="text-black bg-yellow-400 rounded-xl text-sm font-bold ">
                     IMDb : {Math.floor(getDetail?.data?.vote_average)}
                   </p>
                   <p>{Math.floor(getDetail?.data?.runtime / 60)}h</p>
@@ -92,14 +92,14 @@ const Detail = () => {
             </div>
           </div>
 
-          <div className=" bottom-0 h-1/5 w-full p-3 backdrop-blur">
-            <div className="w-full h-full rounded-xl">
-              <div className="flex gap-3 overflow-auto rounded-xl">
+          <div className=" bottom-0 h-1/5 w-full backdrop-blur">
+            <div className="w-full h-full">
+              <div className="flex gap-3 overflow-auto">
                 {listOfVideos.map((trailer) => {
                   return (
                     <iframe
                       key={trailer.id}
-                      className="rounded-xl"
+                      className=""
                       src={getTrailer(`${trailer.key}`)}
                       allowFullScreen
                     ></iframe>
@@ -109,7 +109,7 @@ const Detail = () => {
             </div>
           </div>
           <h1 className="text-left pl-3 text-xl font-bold py-3">Cash</h1>
-          <div className="w-full h-full rounded-xl  flex overflow-x-auto gap-3">
+          <div className="w-full h-full flex overflow-x-auto gap-3">
             {getCredits.map((cash) => {
               return (
                 <div
@@ -117,7 +117,7 @@ const Detail = () => {
                   className=" h-1/4 rounded-xl w-1/4 md:w-1/4 xl:w-1/6 flex-shrink-0 relative flex items-center text-center justify-center"
                 >
                   <img
-                    className="absolute h-full w-full object-cover rounded-xl"
+                    className="absolute h-full w-full object-cover "
                     src={getPoster(cash.profile_path)}
                   ></img>
                   <h1 className="absolute text-xs bottom-3">

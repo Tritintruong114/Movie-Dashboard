@@ -45,7 +45,7 @@ function HomePages() {
             </div>
           </div>
         ) : (
-          <div className="flex gap-2 flex-col justify-center items-center h-full">
+          <div className="flex gap-2 flex-col h-full">
             <div className="w-full flex items-center justify-center p-3 ">
               <h1 className="font-bold text-xl text-left w-full text-red-900">
                 Welcome

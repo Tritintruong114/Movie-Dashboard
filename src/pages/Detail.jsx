@@ -79,8 +79,8 @@ const Detail = () => {
                   >
                     <UilHeart />
                   </button>
-                  <p className="text-black bg-yellow-400 rounded-xl text-sm font-bold ">
-                    IMDb : {Math.floor(getDetail?.data?.vote_average)}
+                  <p className="text-black bg-yellow-400 rounded-xl text-sm font-bold  px-1">
+                    IMDb:{Math.floor(getDetail?.data?.vote_average)}
                   </p>
                   <p>{Math.floor(getDetail?.data?.runtime / 60)}h</p>
                   <p>{Math.floor(getDetail?.data?.runtime % 60)}m</p>
@@ -99,7 +99,7 @@ const Detail = () => {
                   return (
                     <iframe
                       key={trailer.id}
-                      className=""
+                      className="rounded-xl"
                       src={getTrailer(`${trailer.key}`)}
                       allowFullScreen
                     ></iframe>
@@ -117,7 +117,7 @@ const Detail = () => {
                   className=" h-1/4 rounded-xl w-1/4 md:w-1/4 xl:w-1/6 flex-shrink-0 relative flex items-center text-center justify-center"
                 >
                   <img
-                    className="absolute h-full w-full object-cover "
+                    className="absolute h-full w-full object-cover rounded-xl "
                     src={getPoster(cash.profile_path)}
                   ></img>
                   <h1 className="absolute text-xs bottom-3">

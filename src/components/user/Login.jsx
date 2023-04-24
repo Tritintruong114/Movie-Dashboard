@@ -34,6 +34,7 @@ function Login() {
       setIsUser(true);
       navigate("/");
     } catch (error) {
+      console.log(error.message);
       setInvalidUser(error.message);
     }
   };
@@ -50,19 +51,13 @@ function Login() {
           This is netflix login dashboard for SM MD XL screen
         </div>
 
-        <div className="h-3/4 w-full md:w-2/4 rounded-xl flex flex-col xl:w-1/4 items-center justify-center z-10 backdrop-blur text-white">
+        <div className="h-3/4 sm:h-3/4 xl:h-2/4 w-full md:w-2/4 rounded-xl flex flex-col xl:w-1/4 items-center justify-center z-10 backdrop-blur text-white">
           <div className="w-full h-full absolute bg-white opacity-10 rounded-3xl z-0"></div>
-          <div className="flex flex-col h-1/4 justify-center items-center pb-12 z-10">
-            <h1 className="font-bold text-xl md:text-3xl">
+          <div className="flex flex-col h-1/4 justify-center items-center z-10">
+            <h1 className="font-bold text-xl md:text-3xl xl:text-2xl">
               Welcome to Netflix,
             </h1>
             <h1 className="font-bold">Sign In to Continue.</h1>
-            <p className="text-sm text-opacity-60">Don't have a account ?</p>
-            <Link to={"/signup"}>
-              <p className="hover:text-red-600 cursor-pointer font-bold text-red-500">
-                Creat a account
-              </p>
-            </Link>
             <div className="w-full relative flex justify-center items-center">
               <img
                 className="h-full w-1/2"
@@ -71,26 +66,34 @@ function Login() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 h-1/4 items-center justify-center z-10">
+          <div className="flex flex-col w-full relative gap-3 h-1/5 items-center justify-center z-10">
             {invalidUser ? (
-              <h1 className="font-bold text-md">User Not Found</h1>
+              <h1 className="font-bold text-md absolute top-0">
+                User Not Found
+              </h1>
             ) : null}
             <input
-              className="focus:outline-none border-b rounded-xl pl-3 py-1 text-black"
-              type="text"
+              className="focus:outline-none border-b w-3/5 rounded-xl pl-3 py-1 text-black"
+              type="email"
               placeholder="User name"
               onChange={(e) => setLoginEmail(e.target.value)}
             ></input>
             <input
-              className="focus:outline-none border-b  rounded-xl pl-3 py-1  text-black"
+              className="focus:outline-none border-b w-3/5  rounded-xl pl-3 py-1  text-black"
               type="password"
               placeholder="Password"
               onChange={(e) => setLoginPassword(e.target.value)}
             ></input>
-            <Link>
-              <p className="text-sm">Forgot Password?</p>
+          </div>
+          <div className="z-20 text-center">
+            <p className="text-sm text-opacity-60 ">Don't have a account ?</p>
+            <Link to={"/signup"}>
+              <p className="hover:text-red-600 cursor-pointer font-bold pb-3 z-20">
+                Creat a account
+              </p>
             </Link>
           </div>
+
           <div className="flex flex-col w-full gap-3 items-center justify-center z-10">
             <button
               onClick={() => login()}

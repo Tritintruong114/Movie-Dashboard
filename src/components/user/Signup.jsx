@@ -29,11 +29,12 @@ function Signup() {
       setIsRegisted(true);
       setUser(user);
       navigate("/success");
-      setRegisterEmail("");
-      setRegisterPassword("");
       console.log(user);
     } catch (error) {
       console.log(error.message);
+      if (error === "Firebase: Error (auth/invalid-email).") {
+        console.log("ABC");
+      }
     }
   };
 
@@ -51,10 +52,12 @@ function Signup() {
           ></img>
         </div>
         <h1 className="text-xl font-bold">Sign Up</h1>
+        {/* {registerEmail === "" ? "Enter the email" : "Email already registed"} */}
         <div className="flex flex-col gap-3 ">
           <input
             className="focus:outline-none border-b-4 focus:border-red-950"
-            placeholder="Email"
+            placeholder="abc@gmail.com"
+            type="email"
             onChange={(e) => {
               setRegisterEmail(e.target.value);
             }}
@@ -62,7 +65,7 @@ function Signup() {
           />
           <input
             className="focus:outline-none border-b-4 focus:border-red-950"
-            placeholder="Password"
+            placeholder="Must be 6 character"
             type="password"
             onChange={(e) => {
               setRegisterPassword(e.target.value);

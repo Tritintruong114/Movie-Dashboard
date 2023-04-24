@@ -23,7 +23,7 @@ const Search = () => {
 
   console.log(getDataSearch);
   return (
-    <div className="w full h-full grid grid-cols-3 gap-6 overflow-auto p-3">
+    <div className="w full h-full grid sm:grid-cols-3 gap-6 overflow-auto p-3">
       {getDataSearch.map((movie) => {
         return (
           <div className="w-full h-full relative flex items-center justify-center text-center flex-shrink-0">

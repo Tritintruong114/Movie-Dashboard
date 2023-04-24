@@ -39,7 +39,7 @@ function Trending() {
   return (
     <div
       style={{ transform: `translateX` }}
-      className="h-2/4 font-poppins gap-4 snap-x snap-mandatory overflow-x-scroll md:h-4/5 xl:h-full  p-3 flex transition-transform ease-out duration-500"
+      className="h-full font-poppins gap-4 snap-x snap-mandatory overflow-x-scroll md:h-4/5 xl:h-full  p-3 flex transition-transform ease-out duration-500"
     >
       {moviesTrending.map((movie) => {
         return (
@@ -63,7 +63,7 @@ function Trending() {
                       <UilPlay /> Watch Now
                     </button>
                   </Link>
-            
+
                   <Link to={`/detail/${movie.id}`}>
                     <button className="bg-red-900 flex items-center text-white w-fit p-1 rounded-xl">
                       <UilInfo size="21" />

@@ -22,7 +22,7 @@ function HomePages() {
           <Outlet />
         </div>
       </div>
-      <div className="opacity-0 font-poppins p-3 md:w-2/5 xl:w-2/5 md:opacity-100 md :visible">
+      <div className="opacity-0 invisible font-poppins p-3 md:w-2/5 xl:w-2/5 md:opacity-100 md:visible">
         {!localStorage.getItem("display name") &&
         !localStorage.getItem("email") ? (
           <div className="flex  relative h-full rounded-3xl  w-full items-center justify-center flex-col">

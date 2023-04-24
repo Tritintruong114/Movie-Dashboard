@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import tmdb from "../../api/tmdb";
 
 const Community = () => {
-  const { watchList } = useContext(GlobalContext);
+  const { watchList, removeMovieFromWatchList } = useContext(GlobalContext);
   const [getMovies, setGetMovies] = useState([]);
   const [getTvShows, setGetTvShows] = useState([]);
   const [render, setRender] = useState(true);
@@ -101,16 +101,30 @@ const Community = () => {
             <div>
               <h1 className=" font-bold text-lg text-red-900">Watch Lists</h1>
               <div className=" font-bold text-sm text-red-900 flex overflow-auto">
-                {watchList.map((movie) => {
-                  return (
-                    <div className="w-2/4 h-full flex-shrink-0 relative">
-                      <img
-                        className="w-3/4 object-cover rounded-2xl"
-                        src={getPoster(movie.poster_path)}
-                      ></img>
-                    </div>
-                  );
-                })}
+                <div className="w-full h-fit flex-shrink-0 relative flex gap-3">
+                  {watchList.map((movie) => {
+                    return (
+                      <div className="h-fit gap-1 w-1/2  flex-shrink-0  flex flex-col items-center justify-center">
+                        <Link
+                          key={movie.id}
+                          className=" flex-shrink-0"
+                          to={`/detail/${movie.id}`}
+                        >
+                          <img
+                            className="w-full h-full  object-cover rounded-2xl"
+                            src={getPoster(movie.poster_path)}
+                          ></img>
+                        </Link>
+                        <button
+                          className="text-white bg-red-900 rounded-full px-1 py-1"
+                          onClick={() => removeMovieFromWatchList(movie.id)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

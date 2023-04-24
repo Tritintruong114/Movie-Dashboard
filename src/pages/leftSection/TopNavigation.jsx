@@ -58,7 +58,7 @@ function TopNavigation() {
         } grid z-10 sm:pl-3 gap-3 text-center absolute font-poppins transition-all sm:transition-none duration-600 ease-in-out opacity-100 top-9 left-0 bg-white w-full sm:relative sm:opacity-100 sm:flex sm:top-0`}
       >
         {arrayButtonLink.map((button) => (
-          <Link to={button.path} key={button.id}>
+          <Link key={button.id}>
             <h1 className="font-medium hover:bg-red-900 hover:text-white md:hover:text-red-900 md:hover:bg-white py-3">
               {button.name}
             </h1>

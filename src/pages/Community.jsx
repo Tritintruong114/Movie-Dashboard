@@ -56,9 +56,9 @@ const Community = () => {
             </button>
           </Link>
         </div>
-        <div className="w-full h-screen py-3 overflow-auto">
+        <div className="w-full h-screen  overflow-auto">
           <div className="overflow-auto h-3/4">
-            <h1 className="py-3 font-bold text-lg text-red-900">
+            <h1 className=" font-bold text-lg text-red-900">
               {render ? "Tv Shows" : "Movies"}
             </h1>
             {render ? (
@@ -67,7 +67,7 @@ const Community = () => {
                   return (
                     <div
                       key={show.id}
-                      className="w-2/4 h-80  flex-shrink-0 rounded-xl flex flex-col items-center justify-center"
+                      className="w-2/4 h-full  flex-shrink-0 rounded-xl flex flex-col items-center justify-center"
                     >
                       <Link to={`/detail/${show.id}`}>
                         <img
@@ -80,12 +80,12 @@ const Community = () => {
                 })}
               </div>
             ) : (
-              <div className="flex h-fit p-3 overflow-auto gap-3">
+              <div className="flex h-fit overflow-auto gap-3">
                 {getMovies.map((movie) => {
                   return (
                     <div
                       key={movie.id}
-                      className="w-2/4 h-72   flex-shrink-0 rounded-xl flex flex-col items-center justify-center"
+                      className="w-2/4 h-full   flex-shrink-0 rounded-xl flex flex-col items-center justify-center"
                     >
                       <Link to={`/detail/${movie.id}`}>
                         <img
@@ -99,10 +99,8 @@ const Community = () => {
               </div>
             )}
             <div>
-              <h1 className="py-3 font-bold text-lg text-red-900">
-                Watch Lists
-              </h1>
-              <div className="py-3 font-bold text-sm text-red-900 flex overflow-auto">
+              <h1 className=" font-bold text-lg text-red-900">Watch Lists</h1>
+              <div className=" font-bold text-sm text-red-900 flex overflow-auto">
                 {watchList.map((movie) => {
                   return (
                     <div className="w-2/4 h-full flex-shrink-0 relative">

@@ -27,6 +27,10 @@ function Home() {
           Western
         </h1>
         <MovieListContainer genresId={37} />
+        <div className="h-3/4 opacity-0">abc</div>
+        <div className="h-3/4 opacity-0 absolute md:relative">abc</div>
+        <div className="h-3/4 opacity-0 absolute sm:relative">abc</div>
+        <div className="h-3/4 opacity-0 absolute sm:relative">abc</div>
       </div>
     </div>
   );

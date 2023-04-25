@@ -16,6 +16,7 @@ import Success from "./components/user/Success";
 import Detail from "./pages/Detail";
 import Search from "./pages/Search";
 import { GlobalProvider } from "./context/GlobalState";
+import Test from "./pages/Test";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "test",
+        element: <Test />,
       },
       {
         path: "signup",

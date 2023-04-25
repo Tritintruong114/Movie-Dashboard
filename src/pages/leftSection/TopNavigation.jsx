@@ -32,9 +32,11 @@ function TopNavigation() {
     const setInput = {
       inputValue: event.target.value,
     };
-    setInputValue(setInput.inputValue);
+    console.log(event.target.value);
+    setInputValue(event.target.value); //event-loop //debounce
+    console.log(inputValue);
     if (inputValue.length) {
-      navigate(event.target.value ? `/search/${event.target.value}` : "/");
+      navigate(event.target.value ? `/search/${inputValue}` : "/");
     }
   };
 

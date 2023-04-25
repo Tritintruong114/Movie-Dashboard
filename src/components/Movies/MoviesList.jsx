@@ -22,12 +22,10 @@ export function MovieInfo({ filmTilte, backDrop, movieID }) {
         <h1 className="text-white z-10 font-medium absolute text-sm md:text-lg xl:text-sm">
           {filmTilte.slice}
         </h1>
-        {/* <div className="w-full h-full absolute bg-black blur bg-opacity-20"></div> */}
       </div>
     </div>
   );
 }
-//The component must have flex-shrink-0
 
 function MoviesList({ genresId }) {
   const [listOfMovies, setListOfMovies] = useState([]);
@@ -38,7 +36,6 @@ function MoviesList({ genresId }) {
         `https://api.themoviedb.org/3/discover/movie?api_key=951a265e3ef47c76b1be4410641ac67e&with_genres=${genresId}`
       );
       setListOfMovies(data.results);
-      //console.log(data.results);
     };
     getData();
   }, []);

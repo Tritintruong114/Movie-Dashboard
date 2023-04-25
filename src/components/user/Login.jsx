@@ -18,9 +18,7 @@ function Login() {
         localStorage.setItem("display name", result.user.displayName);
         navigate("/");
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const login = async () => {
     console.log(loginEmail, "Testing");
@@ -34,7 +32,6 @@ function Login() {
       setIsUser(true);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
       setInvalidUser(error.message);
     }
   };

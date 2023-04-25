@@ -16,7 +16,6 @@ function MovieList() {
       `discover/movie?api_key=951a265e3ef47c76b1be4410641ac67e&with_genres=${idGenre}`
     );
     const saveData = await data.results;
-    console.log(saveData);
     setMovieGenreId(saveData);
   };
 

@@ -14,7 +14,6 @@ const MovieDataProvider = ({ children }) => {
       `discover/movie?api_key=951a265e3ef47c76b1be4410641ac67e&with_genres=${reciveId}`
     );
     const saveData = await data.results;
-    console.log(saveData, `This is data of genre id ${reciveId}`);
     setMovieGenreId(saveData);
   };
 

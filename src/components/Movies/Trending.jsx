@@ -11,31 +11,26 @@ function Trending() {
   const [getKey, setGetKey] = useState([]);
   const [listOfTrailer, setListOfTrailer] = useState([]);
 
-  //This function is for the Poster of the Movie
   const getPoster = (poster_path) => {
     return `https://image.tmdb.org/t/p/original${poster_path}`;
   };
 
   useEffect(() => {
-    //fetching trending movies
     const fetchTrendingMovies = async () => {
       const { data } = await tmdb.get("trending/all/day");
       setMoviesTrending(data.results); //
       const getData = `${data.results.map((result) => result.id)}`;
       setGetIdForTrailer(getData);
-      console.log(data);
       return getData;
     };
     //fetchVideoTrailer
     const getUrlForVideo = async () => {
       const getData = await fetchTrendingMovies();
       const { data } = await tmdb.get(`movie/${getIdForTrailer}/videos`);
-      // console.log(data.results);
       setListOfTrailer(data.results.slice(0, 3));
     };
     getUrlForVideo();
   }, []);
-  console.log(listOfTrailer.map((e) => e.key));
   return (
     <div
       style={{ transform: `translateX` }}
@@ -71,22 +66,6 @@ function Trending() {
                   </Link>
                 </div>
               </div>
-              {/* <div className="absolute rounded-xl p-6 opacity-0 gap-3 overflow-auto flex md:opacity-100 bg-black bg-opacity-5 backdrop-blur-3xl xl:w-1/2 xl:h-3/6 md:w-2/4 md:h-1/3 bottom-3 right-0">
-                <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
-                  <iframe
-                    className="absolute h-full w-full rounded-xl"
-                    src={getTrailer("LTFGH0rJ-EY")}
-                    allowFullScreen
-                  ></iframe>
-                </div>{" "}
-                <div className="h-full w-3/4 xl:w-3/4 flex-shrink-0 relative ">
-                  <iframe
-                    className="absolute h-full w-full rounded-xl"
-                    src={getTrailer("LTFGH0rJ-EY")}
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div> */}
             </div>
           </div>
         );

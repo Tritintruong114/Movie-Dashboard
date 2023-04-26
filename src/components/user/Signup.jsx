@@ -12,8 +12,12 @@ function Signup() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [isRegisted, setIsRegisted] = useState(false);
   const [user, setUser] = useState({});
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
+  const firebaseError = {
+    "auth/invalid-email": "Your Email is incorrect",
+  };
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -31,10 +35,8 @@ function Signup() {
       navigate("/success");
       console.log(user);
     } catch (error) {
-      console.log(error.message);
-      if (error === "Firebase: Error (auth/invalid-email).") {
-        console.log("ABC");
-      }
+      console.log(error.code);
+      setError(firebaseError[error.code]);
     }
   };
 
@@ -52,7 +54,7 @@ function Signup() {
           ></img>
         </div>
         <h1 className="text-xl font-bold">Sign Up</h1>
-        {/* {registerEmail === "" ? "Enter the email" : "Email already registed"} */}
+        <p>{error}</p>
         <div className="flex flex-col gap-3 ">
           <input
             className="focus:outline-none border-b-4 focus:border-red-950"

@@ -26,7 +26,9 @@ function Trending() {
     //fetchVideoTrailer
     const getUrlForVideo = async () => {
       const getData = await fetchTrendingMovies();
-      const { data } = await tmdb.get(`movie/${getIdForTrailer}/videos`);
+      const { data } = await tmdb.get(
+        `movie/${getIdForTrailer ? getIdForTrailer : ""}/videos`
+      );
       setListOfTrailer(data.results.slice(0, 3));
     };
     getUrlForVideo();

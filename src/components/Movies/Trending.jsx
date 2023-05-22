@@ -31,7 +31,7 @@ function Trending() {
       );
       setListOfTrailer(data.results.slice(0, 3));
     };
-    getUrlForVideo();
+    // getUrlForVideo();
   }, []);
   return (
     <div

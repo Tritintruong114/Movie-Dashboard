@@ -23,7 +23,7 @@ function Trending() {
       setGetIdForTrailer(getData);
       return getData;
     };
-    //fetchVideoTrailer
+    fetchTrendingMovies();
     const getUrlForVideo = async () => {
       const getData = await fetchTrendingMovies();
       const { data } = await tmdb.get(
